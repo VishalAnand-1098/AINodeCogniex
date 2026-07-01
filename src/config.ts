@@ -14,3 +14,11 @@ export const config = {
     .map((o) => o.trim())
     .filter(Boolean),
 };
+
+const LOCALHOST_ORIGIN = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+export function isAllowedCorsOrigin(origin: string | undefined): boolean {
+  if (!origin) return true;
+  if (config.corsOrigins.includes(origin)) return true;
+  return LOCALHOST_ORIGIN.test(origin);
+}

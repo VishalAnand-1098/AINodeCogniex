@@ -12,6 +12,11 @@ const blogSchema = z.object({
   content: z.string(),
   authorName: z.string().min(1),
   status: z.enum(["Draft", "Published"]),
+  categories: z.array(z.string()).optional().default([]),
+  tags: z.array(z.string()).optional().default([]),
+  featuredImage: z.string().optional().nullable(),
+  metaTitle: z.string().optional().nullable(),
+  metaDescription: z.string().optional().nullable(),
 });
 
 router.get("/", async (_req, res) => {

@@ -26,6 +26,11 @@ export function toAdminBlogPost(post: BlogPost) {
     content: post.content,
     authorName: post.authorName,
     status: post.status,
+    categories: post.categories,
+    tags: post.tags,
+    featuredImage: post.featuredImage,
+    metaTitle: post.metaTitle,
+    metaDescription: post.metaDescription,
     publishedAt: post.publishedAt?.toISOString() ?? null,
     createdAt: post.createdAt.toISOString(),
   };

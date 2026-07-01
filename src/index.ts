@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { config } from "./config.js";
+import { config, isAllowedCorsOrigin } from "./config.js";
 import { requireAuth } from "./middleware/auth.js";
 import healthRouter from "./routes/health.js";
 import authRouter from "./routes/auth.js";
@@ -18,7 +18,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: config.corsOrigins,
+    origin(origin, callback) {
+      if (isAllowedCorsOrigin(origin)) {
+        callback(null, origin ?? true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );

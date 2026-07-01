@@ -7,6 +7,9 @@ const PAGE_SIZE = 10;
 
 router.get("/", async (req, res) => {
   const page = Math.max(1, Number(req.query.page) || 1);
+  const limitParam = req.query.limit;
+  const pageSize =
+    limitParam === "all" ? 1000 : Math.min(100, Math.max(1, Number(limitParam) || PAGE_SIZE));
   const category = req.query.category as string | undefined;
   const tag = req.query.tag as string | undefined;
   const search = req.query.search as string | undefined;
@@ -29,8 +32,8 @@ router.get("/", async (req, res) => {
     prisma.blogPost.findMany({
       where,
       orderBy: { publishedAt: "desc" },
-      skip: (page - 1) * PAGE_SIZE,
-      take: PAGE_SIZE,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
     }),
     prisma.blogPost.count({ where }),
   ]);

@@ -13,6 +13,7 @@ import adminLeadsRouter from "./routes/admin/leads.js";
 import adminSubscribersRouter from "./routes/admin/subscribers.js";
 import adminDemoRequestsRouter from "./routes/admin/demo-requests.js";
 import adminBlogRouter from "./routes/admin/blog.js";
+import adminCaseStudiesRouter from "./routes/admin/case-studies.js";
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/v1/health", healthRouter);
 app.use("/api/v1/auth", authRouter);
@@ -42,6 +43,7 @@ app.use("/api/v1/admin/leads", requireAuth, adminLeadsRouter);
 app.use("/api/v1/admin/subscribers", requireAuth, adminSubscribersRouter);
 app.use("/api/v1/admin/demo-requests", requireAuth, adminDemoRequestsRouter);
 app.use("/api/v1/admin/blog", requireAuth, adminBlogRouter);
+app.use("/api/v1/admin/case-studies", requireAuth, adminCaseStudiesRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: "Not found" });

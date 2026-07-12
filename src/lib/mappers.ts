@@ -54,3 +54,23 @@ export function toCaseStudy(study: CaseStudy) {
     publishedAt: study.publishedAt.toISOString(),
   };
 }
+
+export function toAdminCaseStudy(study: CaseStudy) {
+  return {
+    id: study.id,
+    title: study.title,
+    slug: study.slug,
+    industry: study.industry,
+    summary: study.summary,
+    content: study.content,
+    featuredImage: study.featuredImage,
+    roiMetric: study.roiMetric,
+    roiLabel: study.roiLabel,
+    beforeStat: study.beforeStat,
+    beforeLabel: study.beforeLabel,
+    afterStat: study.afterStat,
+    afterLabel: study.afterLabel,
+    publishedAt: study.publishedAt.toISOString(),
+    createdAt: study.createdAt.toISOString(),
+  };
+}

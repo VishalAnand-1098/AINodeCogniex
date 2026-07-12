@@ -15,7 +15,7 @@ Compatible with the existing Next.js frontend (`CognexiaAIFE`) — same `/api/v1
 ## Quick start
 
 ```powershell
-cd CognexiaAIBackendNode
+cd AINodeCogniex
 npm install
 copy .env.example .env
 npm run db:setup
